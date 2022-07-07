@@ -5,6 +5,7 @@ const TicTacToe = () => {
 	const [turn, setTurn] = useState('x');
 	const [cells, setCells] = useState(Array(9).fill(''));
 	const [winner, setWinner] = useState();
+	
 
 	const checkForWinner = (squares) => {
 		let combos = {
@@ -60,7 +61,12 @@ const TicTacToe = () => {
 
 		checkForWinner(squares);
 		setCells(squares);
+		if(winner){
+			alert(`Game over winner is  ${winner} please reset the battle`)
+		}
+
 	};
+
 
 	const handleRestart = () => {
 		setWinner(null);
@@ -73,6 +79,7 @@ const TicTacToe = () => {
 
 	return (
 		<div className='container'>
+			<h1>Tic Tac Toe</h1>
 			<table>
 				Turn: {turn}
 				<tbody>
@@ -93,10 +100,19 @@ const TicTacToe = () => {
 					</tr>
 				</tbody>
 			</table>
-			{winner && (
+			<button  className='reset ' onClick={()=>handleRestart()}>Reset</button>
+			{
+				
+			}
+			
+			
+			{winner && 
+				// () &&
+			(
 				<>
-					<p>{winner} is the winner!</p>
+					<p>{winner}  is the winner!</p>
 					<button onClick={() => handleRestart()}>Play Again</button>
+					
 				</>
 			)}
 		</div>
